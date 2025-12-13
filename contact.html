@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<style></style>
 <html lang="cs">
 <head>
   
@@ -11,7 +10,13 @@
     <link 
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
         rel="stylesheet">
-    <link rel="stylesheet"href="css/style.css">
+
+    <!-- Bootstrap Icons -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" 
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,29 +34,128 @@
           <li class="nav-item"><a class="nav-link" href="gallery.html">My work</a></li>
           <li class="nav-item"><a class="nav-link" href="reservation.html">Book your session!</a></li>
           <li class="nav-item"><a class="nav-link" href="prices.html">Prices</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Keep in touch</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Keep in touch</a></li>
         </ul>
       </div>
     </div>
   </nav>
-<div class="container mt-3">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Welcome</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Contact</li>
-    </ol>
-  </nav>
+
+  <div class="container mt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Welcome</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Contact</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Keep in touch</h1>
+
+    <div class="row">
+      <!-- CONTACT INFO -->
+      <div class="col-md-5 mb-4">
+        <p>
+          Feel free to contact me if you have any questions or if you would like
+          to discuss your tattoo idea. Or just tell me about your day!
+        </p>
+
+        <p class="mb-2">
+          <i class="bi bi-geo-alt"></i>
+          Brno, Czech Republic
+        </p>
+
+        <p class="mb-2">
+          <i class="bi bi-envelope"></i>
+          <a href="mailto:The24xxx@gmail.com">The24xxx@gmail.com</a>
+        </p>
+
+        <p class="mb-3">
+          <i class="bi bi-instagram"></i>
+          <a href="https://www.instagram.com/the24xx/" target="_blank" rel="noopener">Project24</a>
+        </p>
+
+        <div class="d-grid gap-2 d-md-block">
+          <a href="reservation.html" class="btn btn-dark">
+            Book your session
+          </a>
+          <a href="gallery.html" class="btn btn-outline-dark">
+            See my work
+          </a>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="col-md-7">
+        <form id="contactForm">
+          <div class="mb-3">
+            <label for="contactName" class="form-label">Your name</label>
+            <input type="text" class="form-control" id="contactName" placeholder="Your name">
+          </div>
+
+          <div class="mb-3">
+            <label for="contactEmail" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="contactEmail" placeholder="you@example.com">
+          </div>
+
+          <div class="mb-3">
+            <label for="contactMessage" class="form-label">Message</label>
+            <textarea class="form-control" id="contactMessage" rows="4" placeholder="Write your message..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-outline-dark">
+            Send message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU MODAL -->
+<div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="thankYouModalLabel">Thank you!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>Your message has been prepared. I will get back to you as soon as possible.</p>
+        <p class="mb-0"><small>(Note: This demo form does not send emails yet.)</small></p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contactForm');
+    const thankYouModalEl = document.getElementById('thankYouModal');
+
+    if (!form || !thankYouModalEl) return;
+
+    const thankYouModal = new bootstrap.Modal(thankYouModalEl);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // zabrání reloadu stránky
+      thankYouModal.show(); // otevře modal
+      form.reset(); // vyčistí formulář
+    });
+  });
+</script>
 
 
-
-    <h1 class="text-center mt-5">Moje stránka</h1>
-
-
-    <!-- Bootstrap JS -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+  <!-- Bootstrap JS -->
+  <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
 </body>
 </html>

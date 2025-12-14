@@ -101,20 +101,17 @@ a{
 }
 
 /*Carousel */
-/* výška carouselu */
-.carousel-item {
-  height: 40vh;           /* můžeš změnit: 50vh, 70vh, nebo px */
-  min-height: 170px;      /* aby nebyl moc nízký */
-  max-height: 400px;
+.carousel-img {
+  height: 40vh;          /* uprav dle chuti, např. 50vh */
+  object-fit: cover;     /* ořez */
+  object-position: center; /* kam se má “přiblížení” zaměřit */
 }
 
-/* ořezávání obrázků */
-.carousel-item img {
-  height: 100%;
-  width: 200%;
-  object-fit: cover;     /* KLÍČOVÉ */
-  object-position: center; /* střed ořezu */
-
+/* na velkých monitorech ať to není přehnaně vysoké */
+@media (min-width: 992px) {
+  .carousel-img {
+    height: 40vh;
+  }
 }
 
 

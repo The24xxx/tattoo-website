@@ -41,66 +41,100 @@
   </nav>
 
   <!-- CAROUSEL -->
-  <div id="mainCarousel" class="carousel slide position-relative" data-bs-ride="carousel">
+<!-- CAROUSEL (MOBILE: 6 slides / 6 indicators) -->
+<div id="mainCarouselMobile" class="carousel slide position-relative d-lg-none" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="4"></button>
+    <button type="button" data-bs-target="#mainCarouselMobile" data-bs-slide-to="5"></button>
+  </div>
 
-    <!-- tečky -->
-<div class="carousel-indicators">
-  <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
-  <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-  <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/carousel/carousel_firefly.jpg" class="d-block w-100 carousel-img" alt="Tattoo 1">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carousel/carousel_shirt.jpg" class="d-block w-100 carousel-img" alt="Tattoo 2">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carousel/carousel_inferno.jpg" class="d-block w-100 carousel-img" alt="Tattoo 3">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carousel/carousel_mountains.jpg" class="d-block w-100 carousel-img" alt="Tattoo 4">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carousel/carousel_scream.jpg" class="d-block w-100 carousel-img" alt="Tattoo 5">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carousel/carousel_seahorse.jpg" class="d-block w-100 carousel-img" alt="Tattoo 6">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarouselMobile" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#mainCarouselMobile" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
 </div>
 
 
-    <!-- obrázky -->
-<div class="carousel-inner">
-
-  <!-- Slide 1 (img 1 + img 2) -->
-  <div class="carousel-item active">
-    <div class="row g-0">
-      <div class="col-12 col-lg-6">
-        <img src="img/carousel/carousel_firefly.jpg" class="d-block w-100 carousel-img" alt="Tattoo 1">
-      </div>
-      <div class="col-12 col-lg-6 d-none d-lg-block">
-        <img src="img/carousel/carousel_shirt.jpg" class="d-block w-100 carousel-img" alt="Tattoo 2">
-      </div>
-    </div>
+<!-- CAROUSEL (DESKTOP: 3 slides / 3 indicators, 2 photos per slide) -->
+<div id="mainCarouselDesktop" class="carousel slide position-relative d-none d-lg-block" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#mainCarouselDesktop" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#mainCarouselDesktop" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#mainCarouselDesktop" data-bs-slide-to="2"></button>
   </div>
 
-  <!-- Slide 2 (img 3 + img 4) -->
-  <div class="carousel-item">
-    <div class="row g-0">
-      <div class="col-12 col-lg-6">
-        <img src="img/carousel/carousel_inferno.jpg" class="d-block w-100 carousel-img" alt="Tattoo 3">
-      </div>
-      <div class="col-12 col-lg-6 d-none d-lg-block">
-        <img src="img/carousel/carousel_mountains.jpg" class="d-block w-100 carousel-img" alt="Tattoo 4">
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <div class="row g-0">
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_firefly.jpg" class="d-block w-100 carousel-img" alt="Tattoo 1">
+        </div>
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_shirt.jpg" class="d-block w-100 carousel-img" alt="Tattoo 2">
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Slide 3 (img 5 + img 6) -->
-  <div class="carousel-item">
-    <div class="row g-0">
-      <div class="col-12 col-lg-6">
-        <img src="img/carousel/carousel_scream.jpg" class="d-block w-100 carousel-img" alt="Tattoo 5">
-      </div>
-      <div class="col-12 col-lg-6 d-none d-lg-block">
-        <img src="img/carousel/carousel_seahorse.jpg" class="d-block w-100 carousel-img" alt="Tattoo 6">
+    <div class="carousel-item">
+      <div class="row g-0">
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_inferno.jpg" class="d-block w-100 carousel-img" alt="Tattoo 3">
+        </div>
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_mountains.jpg" class="d-block w-100 carousel-img" alt="Tattoo 4">
+        </div>
       </div>
     </div>
+
+    <div class="carousel-item">
+      <div class="row g-0">
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_scream.jpg" class="d-block w-100 carousel-img" alt="Tattoo 5">
+        </div>
+        <div class="col-lg-6">
+          <img src="img/carousel/carousel_seahorse.jpg" class="d-block w-100 carousel-img" alt="Tattoo 6">
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarouselDesktop" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#mainCarouselDesktop" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
 </div>
 
-
-    <!-- šipky -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
 
   <!-- ÚVODNÍ SEKCE -->
   <div class="container my-5 text-center">

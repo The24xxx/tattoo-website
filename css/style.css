@@ -9,3 +9,115 @@
     z-index: 2;
     pointer-events: none; /* overlay nebude překážet klikání */
 }
+
+/* navbar překryv */
+.custom-navbar{
+  background-color:#000 !important;
+  position: relative;
+  z-index: 10;
+}
+
+/* 15px “tečkový okraj” překrývající carousel */
+.custom-navbar::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-20px;
+  width:100%;
+  height:30px;
+  z-index: 11;
+  pointer-events:none;
+
+  /* obrázek s alfou se bude opakovat vodorovně */
+  background-image: url("../img/navbar_bottom.png");
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-size: auto 40px; /* výška přesně 15px */
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Raleway Dots', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+}
+.custom-navbar .navbar-brand {
+    font-family: "Raleway Dots", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    font-style: bold;
+}
+
+p {
+    font-family: "Amatic SC";
+    font-weight: 400;
+    font-size: 2em;
+}
+
+.btn-primary{
+  --bs-btn-bg: #b00020;
+  --bs-btn-border-color: #b00020;
+
+  --bs-btn-hover-bg: #8d001a;
+  --bs-btn-hover-border-color: #8d001a;
+
+  --bs-btn-active-bg: #740015;
+  --bs-btn-active-border-color: #740015;
+}
+:root{
+  --bs-link-color: #b00020;
+  --bs-link-hover-color: #8d001a;
+}
+.breadcrumb a{
+  color: var(--bs-link-color);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover{
+  color: var(--bs-link-hover-color);
+  text-decoration: underline;
+}
+
+a{
+  text-decoration: none;
+  color: var(--bs-link-color);
+}
+
+/* DataTables pagination - active page */
+.dataTables_wrapper .pagination .page-item.active .page-link {
+  background-color: #b00020 !important;
+  border-color: #b00020 !important;
+  color: #fff !important;
+}
+
+/* Hover na stránkách */
+.dataTables_wrapper .pagination .page-link:hover {
+  color: #b00020 !important;
+}
+
+/* Focus (když klikneš / tabuješ) */
+.dataTables_wrapper .pagination .page-link:focus {
+  box-shadow: 0 0 0 .25rem rgba(176, 0, 32, 0.25) !important;
+}
+
+/*Carousel */
+/* výška carouselu */
+.carousel-item {
+  height: 60vh;           /* můžeš změnit: 50vh, 70vh, nebo px */
+  min-height: 200px;      /* aby nebyl moc nízký */
+}
+
+/* ořezávání obrázků */
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;     /* KLÍČOVÉ */
+  object-position: center; /* střed ořezu */
+  transform: scale(1.1); /* mírné zvětšení pro lepší efekt */
+}
+
+
+
+
+
+

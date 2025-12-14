@@ -103,17 +103,18 @@ a{
 /*Carousel */
 /* výška carouselu */
 .carousel-item {
-  height: 60vh;           /* můžeš změnit: 50vh, 70vh, nebo px */
-  min-height: 200px;      /* aby nebyl moc nízký */
+  height: 40vh;           /* můžeš změnit: 50vh, 70vh, nebo px */
+  min-height: 170px;      /* aby nebyl moc nízký */
+  max-height: 400px;
 }
 
 /* ořezávání obrázků */
 .carousel-item img {
   height: 100%;
-  width: 100%;
+  width: 200%;
   object-fit: cover;     /* KLÍČOVÉ */
   object-position: center; /* střed ořezu */
-  transform: scale(1.1); /* mírné zvětšení pro lepší efekt */
+
 }
 
 

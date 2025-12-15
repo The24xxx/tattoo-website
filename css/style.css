@@ -114,6 +114,12 @@ a{
   }
 }
 
+/* ===== FORM FOCUS (červené zvýraznění místo modrého) ===== */
+.form-control:focus,
+.form-select:focus {
+  border-color: #b00020 !important;
+  box-shadow: 0 0 0 0.25rem rgba(176, 0, 32, 0.25) !important;
+}
 
 
 

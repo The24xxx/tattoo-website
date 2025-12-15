@@ -72,7 +72,16 @@
       <!-- EMAIL -->
       <div class="col-md-6">
         <label for="email" class="form-label">E-mail *</label>
-        <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+        <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        required
+        pattern="^[^@\s]+@[^@\s]+\.[^@\s]{2,}$"
+        placeholder="your@email.com"
+        title="Please enter a valid email address (e.g. name@example.com)">
+
       </div>
 
       <!-- PHONE (INPUT GROUP) -->
@@ -80,7 +89,15 @@
         <label for="phone" class="form-label">Phone number *</label>
         <div class="input-group">
           <span class="input-group-text">+420</span>
-          <input type="tel" class="form-control" id="phone" placeholder="123 456 789" required>
+        <input
+        type="tel"
+        class="form-control"
+        id="phone"
+        name="phone"
+        placeholder="123 456 789"
+        maxlength="11"
+        inputmode="numeric"
+        required>
         </div>
       </div>
 
@@ -143,8 +160,16 @@
 
       <!-- PREFERRED DATE -->
       <div class="col-md-6">
-        <label for="date" class="form-label">Preferred date *</label>
-        <input type="date" class="form-control" id="date" required>
+        <div class="mb-3">
+        <label for="date" class="form-label">Preferred date</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="date" 
+          name="date"
+          required>
+      </div>
+
       </div>
 
       <!-- TIME OF DAY (SELECT) -->
@@ -254,6 +279,45 @@
       }
     });
   </script>
+
+  <script>
+    const dateInput = document.getElementById("date");
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+
+    const formattedToday = `${yyyy}-${mm}-${dd}`;
+    dateInput.min = formattedToday;
+  </script>
+
+  <script>
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', function () {
+      // odstraní všechno kromě číslic
+      let numbers = this.value.replace(/\D/g, '');
+
+      // max 9 číslic
+      numbers = numbers.substring(0, 9);
+
+      // rozdělí do bloků 3–3–3
+      let formatted = numbers;
+
+      if (numbers.length > 3 && numbers.length <= 6) {
+        formatted = numbers.slice(0, 3) + ' ' + numbers.slice(3);
+      } else if (numbers.length > 6) {
+        formatted =
+          numbers.slice(0, 3) + ' ' +
+          numbers.slice(3, 6) + ' ' +
+          numbers.slice(6);
+      }
+
+      this.value = formatted;
+    });
+  </script>
+
 
   <!-- Bootstrap JS -->
   <script 

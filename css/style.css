@@ -121,6 +121,20 @@ a{
   box-shadow: 0 0 0 0.25rem rgba(176, 0, 32, 0.25) !important;
 }
 
+.flash-option {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: .5rem;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.flash-option:hover { border-color: #b00020; }
+.flash-option.selected {
+  border-color: #b00020;
+  box-shadow: 0 0 0 .25rem rgba(176,0,32,.25);
+}
+#openFlashPicker {
+  margin-top: 30px; /* výška labelu */
+}
 
 
 

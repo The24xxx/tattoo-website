@@ -118,27 +118,42 @@
         </div>
       </div>
 
-      <!-- FLASH FIELDS (ONLY FOR FLASH) -->
-      <div class="col-12 d-none" id="flashFields">
-        <div class="row g-3">
-          <div class="col-md-8">
-            <label for="flashSet" class="form-label">Flash collection</label>
-            <select id="flashSet" class="form-select">
-              <option value="" selected>Choose flash collection</option>
-              <option value="mini-symbols">Mini symbols</option>
-              <option value="dark-geometry">Dark geometry</option>
-              <option value="flora">Floral & nature</option>
-              <option value="abstract">Abstract / experimental</option>
-              <option value="animals">Animals & creatures</option>
-            </select>
-          </div>
-          <div class="col-md-4 d-flex align-items-end">
-            <a href="gallery.html#flash" class="btn btn-outline-dark w-100" target="_blank">
-              Open flash gallery
-            </a>
-          </div>
-        </div>
-      </div>
+<!-- FLASH FIELDS (ONLY FOR FLASH) -->
+<div class="col-12 d-none" id="flashFields">
+  <div class="row g-3">
+
+<div class="col-md-6">
+  <label for="flashSet" class="form-label">Flash collection</label>
+  <select id="flashSet" class="form-select">
+    <option value="" selected>Choose flash collection</option>
+    <option value="dotwork">Dotwork</option>
+    <option value="anaglyphs">Anaglyphs</option>
+    <option value="geometry">Geometry</option>
+  </select>
+  <div class="form-text mt-1" id="flashChoiceText">
+    Selected: <em>none</em>
+  </div>
+  <input type="hidden" id="selectedFlash" name="selectedFlash">
+</div>
+
+<div class="col-md-6">
+  <!-- prázdný label = zarovnání -->
+  <label class="form-label invisible">Flash picker</label>
+  <button
+    type="button"
+    id="openFlashPicker"
+    class="btn btn-dark px-4"
+    data-bs-toggle="modal"
+    data-bs-target="#flashPickerModal">
+    Choose from collection
+  </button>
+</div>
+
+
+  </div>
+</div>
+
+
 
       <!-- TATTOO SIZE (SELECT) -->
       <div class="col-md-6">
@@ -317,6 +332,157 @@
       this.value = formatted;
     });
   </script>
+
+<!-- FLASH PICKER MODAL -->
+<div class="modal fade" id="flashPickerModal" tabindex="-1" aria-labelledby="flashPickerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="flashPickerModalLabel">Choose flash</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-3 text-muted" id="flashHint">Pick a collection first.</p>
+        <div class="row g-3" id="flashGrid"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="useSelectedFlash" class="btn btn-dark" disabled>Use selected</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- data: cesty k obrázkům podle kategorií ---
+  const FLASHES = {
+    dotwork: [
+      'img/flashes/flash_pipette.jpg',
+      'img/flashes/flash_car.jpg',
+      'img/flashes/flash_drink.jpg',
+      'img/flashes/flash_firefly.jpg',
+      'img/flashes/flash_inferno.jpg',
+      'img/flashes/flash_mountains.jpg',
+      'img/flashes/flash_onion.jpg',
+      'img/flashes/flash_pumpkin.jpg',
+      'img/flashes/flash_scream.jpg',
+      'img/flashes/flash_seahorse.jpg',
+      'img/flashes/flash_shell.jpg',
+      'img/flashes/flash_shirt.jpg'
+    ],
+    anaglyphs: [
+      'img/flashes/flash_3D_columns.jpg' // ← případně přejmenuj na přesný název v repo
+    ],
+    geometry: [
+      // až budeš mít geometry flashe, doplň sem cesty
+    ]
+  };
+
+  // --- elementy ---
+  const flashSet = document.getElementById('flashSet');
+  const flashGrid = document.getElementById('flashGrid');
+  const flashHint = document.getElementById('flashHint');
+  const useBtn = document.getElementById('useSelectedFlash');
+  const choiceText = document.getElementById('flashChoiceText');
+  const hiddenSelected = document.getElementById('selectedFlash');
+
+  let currentSelected = ''; // path vybraného obrázku
+
+  // vygeneruje grid podle zvolené kolekce
+  function renderFlashGrid(category) {
+    flashGrid.innerHTML = '';
+    currentSelected = '';
+    useBtn.disabled = true;
+
+    const list = FLASHES[category] || [];
+    document.getElementById('flashPickerModalLabel').textContent =
+      category ? `Choose flash – ${category.charAt(0).toUpperCase() + category.slice(1)}` : 'Choose flash';
+
+    if (!category) {
+      flashHint.textContent = 'Pick a collection first.';
+      return;
+    }
+
+    if (list.length === 0) {
+      flashHint.textContent = 'No flashes in this collection yet.';
+      return;
+    }
+
+    flashHint.textContent = 'Click an image to select.';
+    list.forEach((src, i) => {
+      const col = document.createElement('div');
+      col.className = 'col-6 col-md-4 col-lg-3';
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn p-0 border-0 w-100';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'ratio ratio-1x1 flash-option';
+      wrap.dataset.src = src;
+      wrap.title = src.split('/').pop(); // tooltip = název souboru
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'flash';
+      img.className = 'w-100 h-100 object-fit-cover rounded';
+
+      wrap.appendChild(img);
+      btn.appendChild(wrap);
+      col.appendChild(btn);
+      flashGrid.appendChild(col);
+
+      // click handler – označení vybraného
+      btn.addEventListener('click', () => {
+        flashGrid.querySelectorAll('.flash-option').forEach(el => el.classList.remove('selected'));
+        wrap.classList.add('selected');
+        currentSelected = src;
+        useBtn.disabled = false;
+      });
+    });
+  }
+
+  // otevření modalu – vyrenderuj dle aktuálního selectu
+  const flashPickerModal = document.getElementById('flashPickerModal');
+  flashPickerModal.addEventListener('show.bs.modal', () => {
+    renderFlashGrid(flashSet.value || '');
+  });
+
+  // změna kolekce, když je modal otevřený → přegeneruj
+  flashSet.addEventListener('change', () => {
+    if (flashPickerModal.classList.contains('show')) {
+      renderFlashGrid(flashSet.value || '');
+    }
+  });
+
+  // potvrzení výběru
+  useBtn.addEventListener('click', () => {
+    if (!currentSelected) return;
+    hiddenSelected.value = currentSelected;
+    choiceText.innerHTML = 'Selected: <code>' + currentSelected.split('/').pop() + '</code>';
+    const modal = bootstrap.Modal.getInstance(flashPickerModal);
+    modal.hide();
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const flashSet = document.getElementById('flashSet');
+    const openBtn = document.getElementById('openFlashPicker');
+
+    if (!flashSet || !openBtn) return;
+
+    function updateFlashButtonState() {
+      openBtn.disabled = !flashSet.value; // bez kolekce je tlačítko disabled
+    }
+
+    flashSet.addEventListener('change', updateFlashButtonState);
+    updateFlashButtonState();
+  });
+</script>
+
 
 
   <!-- Bootstrap JS -->
